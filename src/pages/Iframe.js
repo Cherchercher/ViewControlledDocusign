@@ -19,13 +19,13 @@ class IframePage extends React.Component {
 		return(
             <div>
                 <Iframe url="http://www.youtube.com/embed/xDMP3i36naA"
-                    position="relative"
-                    width="100%"
-                    id="myId"
-                    className="myClassname"
-                    height="500px"
-                    styles={{height: "25px"}}
-                    allowFullScreen/>
+                position="absolute"
+                width="100%"
+                id="myId"
+                className="myClassname"
+                height="100%"
+                styles={{height: "800px"}}
+                allowFullScreen/>
             </div>
 		);
 	}
