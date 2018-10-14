@@ -8,15 +8,17 @@
     <p>Gmail API Quickstart</p>
 
     <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize_button" style="display: none;">Authorize</button>
+    <button id="authorize_button" onClick="myContinue()" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
-
+    <!--Add button to continute to the document-->
+    <button id="continue" onClick="mySignIn(); nextButton(); disabled=true;" style="display: none;">View important statements</button>
+      <button id="docuSign_button"  style="display: none;"> <a href="http://localhost:3000">Continue to your DocuSign</a></button>
     <pre id="content"></pre>
-
+      
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
-      var CLIENT_ID = '765254011404-n79peg87q5jvuj3idqml4lthj4ncinpn.apps.googleusercontent.com';
-      var API_KEY = 'AIzaSyCuureavsXZYUp6BBSxmN4BTzHDRz5b6SU';
+      var CLIENT_ID = '651854892275-fpcbpok5gifupgpanm7pri2up92iqipp.apps.googleusercontent.com';
+      var API_KEY = 'AIzaSyDHlIn3EKhXJQpMRQCMLPYmOi56A8CwA1w';
 
       // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
@@ -27,7 +29,8 @@
 
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
-
+      var continueButton = document.getElementById('continue');
+      var docuSignButton = document.getElementById('docuSign_button')
       /**
        *  On load, called to load the auth2 library and API client library.
        */
@@ -61,13 +64,14 @@
        *  appropriately. After a sign-in, the API is called.
        */
       function updateSigninStatus(isSignedIn) {
-        if (isSignedIn) {
+          if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
-          listLabels();
+          continueButton.style.display = 'block';
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
+          continueButton.style.display = 'none';
         }
       }
 
@@ -77,7 +81,41 @@
       function handleAuthClick(event) {
         gapi.auth2.getAuthInstance().signIn();
       }
-
+      </script>
+      
+      <!-- reveals hidden iframe -->
+      <div id="my-div" style="display:none">
+      <iframe src="http://docs.google.com/gview?url=https://s22.q4cdn.com/412964029/files/doc_downloads/terms.pdf&embedded=true" style="width:1660px; height:970px;" frameborder="0"></iframe>
+      </div>
+      
+      
+      <script>
+      //alert popup
+      function nextButton() {
+          alert('The sender of this document would like you to read the following closely. You may proceed after 30 seconds:');
+          setTimeout(function(){alert('You may now proceed to DocuSign');}, 3000);
+          setTimeout(function(){docuSignButton.style.display = 'block';}, 3000);
+          
+      }
+          
+      //function to hide/unhide the iframe before authorization
+      function mySignIn() {
+        var x = document.getElementById("my-div");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      }    
+      //funtion to hide/unhide the continue button
+      function myContinue() {
+        var y = document.getElementById("continue");
+        if (y.style.display === "none") {
+          y.style.display = "block";
+        } else {
+          y.style.display = "none";
+        }
+      }
       /**
        *  Sign out the user upon button click.
        */
@@ -97,28 +135,7 @@
         pre.appendChild(textContent);
       }
 
-      /**
-       * Print all Labels in the authorized user's inbox. If no labels
-       * are found an appropriate message is printed.
-       */
-      function listLabels() {
-        gapi.client.gmail.users.labels.list({
-          'userId': 'me'
-        }).then(function(response) {
-          var labels = response.result.labels;
-          appendPre('Labels:');
-
-          if (labels && labels.length > 0) {
-            for (i = 0; i < labels.length; i++) {
-              var label = labels[i];
-              appendPre(label.name)
-            }
-          } else {
-            appendPre('No Labels found.');
-          }
-        });
-      }
-
+        
     </script>
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
