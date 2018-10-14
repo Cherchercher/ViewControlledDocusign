@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Gmail API Quickstart</title>
-    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
+    <title style = "float-left">Gmail API Quickstart</title>
+      <meta charset="utf-8" />
   </head>
   <body>
-    <p>Gmail API Quickstart</p>
-
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize_button" onClick="myContinue()" style="display: none;">Authorize</button>
-    <button id="signout_button" style="display: none;">Sign Out</button>
-    <!--Add button to continute to the document-->
-    <button id="continue" onClick="mySignIn(); nextButton(); disabled=true;" style="display: none;">View important statements</button>
-      <button id="docuSign_button"  style="display: none;"> <a href="http://localhost:3000">Continue to your DocuSign</a></button>
-    <pre id="content"></pre>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Gmail API Quickstart</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <button id="authorize_button" onClick="myContinue()" class="btn mr-3 btn-primary" href="#" type="button"> Authorize <span class="sr-only">(current)</span></button>
+            <button  id="continue" onClick="mySignIn(); nextButton(); disabled=true;" class="btn mr-2  btn-outline-success" href="#" type="button"> View important statements <span class="sr-only">(current)</span></button>
+            <button id="docuSign_button"  class="btn btn-outline-secondary" href="http://localhost:8000" type="button">Continue to your DocuSign</button>        
+            <button id="signout_button" class=" btn btn-outline-secondary ml-5" href="#" type="button">Sign Out</button>
+          </div>
+        </div>
+      </nav>
+      
+  <pre class="mx-auto" id="content"></pre>
       
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
-      var CLIENT_ID = '651854892275-fpcbpok5gifupgpanm7pri2up92iqipp.apps.googleusercontent.com';
-      var API_KEY = 'AIzaSyDHlIn3EKhXJQpMRQCMLPYmOi56A8CwA1w';
+      var CLIENT_ID = '1051022755171-tvs64t09lg27qaj94727sm7u40n0nobd.apps.googleusercontent.com';
+      var API_KEY = 'AIzaSyAY01sKQoGx4XSX_5Ru6gVsLpEY8-MG3dY';
 
       // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"];
@@ -141,6 +149,9 @@
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
-    <iframe src="https://demo.docusign.net/signing/emails/v2-c76b390f6f8a4c7b824b7cc0ff1a73cdedffca612f54485a912c6960c473f229833ad4264e304c03904957c725c422f1" style="border:1px;"></iframe>
+    <iframe src="https://demo.docusign.net/signing/emails/v2-c76b390f6f8a4c7b824b7cc0ff1a73cdedffca612f54485a912c6960c473f229833ad4264e304c03904957c725c422f1" class="mx-auto" style="border:1px; width:100%;"></iframe>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
